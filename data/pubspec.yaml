@@ -1,5 +1,5 @@
-name: flutter_state_management
-description: A project to learn different state management approaches in flutter
+name: data
+description: A new Flutter module project.
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -9,11 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  domain:
-    path: domain
   get_it: ^7.6.0
   injectable: ^2.1.2
-  cupertino_icons: ^1.0.2
+  freezed: 2.3.5
+  freezed_annotation: ^2.2.0
+  http: ^1.0.0
+  logger: ^1.4.0
+  json_annotation: ^4.8.1
 
 dev_dependencies:
   flutter_test:
@@ -21,6 +23,4 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   injectable_generator: ^2.1.6
   build_runner: ^2.4.4
-
-flutter:
-  uses-material-design: true
+  json_serializable: ^6.6.2
