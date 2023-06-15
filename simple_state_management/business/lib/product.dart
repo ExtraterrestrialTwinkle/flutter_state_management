@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:data/data.dart';
 part 'product.freezed.dart';
 
 @freezed
@@ -11,4 +12,17 @@ class Product with _$Product {
     String? description,
     String? image,
   }) = _Product;
+}
+
+extension Mapper on ProductModel {
+  Product toProduct() {
+    return Product (
+      id: id,
+      title: title,
+      price: price,
+      category: category,
+      description: description,
+      image: image
+    );
+  }
 }

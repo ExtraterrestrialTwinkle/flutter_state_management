@@ -1,6 +1,7 @@
 name: simple_state_management
 description: A new Flutter package project.
 version: 0.0.1
+publish_to: 'none'
 
 environment:
   sdk: '>=3.0.2 <4.0.0'
@@ -11,8 +12,8 @@ dependencies:
   get_it: ^7.6.0
   injectable: ^2.1.2
   cupertino_icons: ^1.0.2
-  domain:
-    path: domain
+  business:
+    path: business
 
 dev_dependencies:
   flutter_test:
