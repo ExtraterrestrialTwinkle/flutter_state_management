@@ -22,6 +22,7 @@ mixin _$Product {
   String? get category => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
+  int get inCart => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
@@ -38,7 +39,8 @@ abstract class $ProductCopyWith<$Res> {
       String price,
       String? category,
       String? description,
-      String? image});
+      String? image,
+      int inCart});
 }
 
 /// @nodoc
@@ -60,6 +62,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? category = freezed,
     Object? description = freezed,
     Object? image = freezed,
+    Object? inCart = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -86,6 +89,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      inCart: null == inCart
+          ? _value.inCart
+          : inCart // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -103,7 +110,8 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String price,
       String? category,
       String? description,
-      String? image});
+      String? image,
+      int inCart});
 }
 
 /// @nodoc
@@ -122,6 +130,7 @@ class __$$_ProductCopyWithImpl<$Res>
     Object? category = freezed,
     Object? description = freezed,
     Object? image = freezed,
+    Object? inCart = null,
   }) {
     return _then(_$_Product(
       id: null == id
@@ -148,6 +157,10 @@ class __$$_ProductCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      inCart: null == inCart
+          ? _value.inCart
+          : inCart // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -161,7 +174,8 @@ class _$_Product implements _Product {
       required this.price,
       this.category,
       this.description,
-      this.image});
+      this.image,
+      required this.inCart});
 
   @override
   final int id;
@@ -175,10 +189,12 @@ class _$_Product implements _Product {
   final String? description;
   @override
   final String? image;
+  @override
+  final int inCart;
 
   @override
   String toString() {
-    return 'Product(id: $id, title: $title, price: $price, category: $category, description: $description, image: $image)';
+    return 'Product(id: $id, title: $title, price: $price, category: $category, description: $description, image: $image, inCart: $inCart)';
   }
 
   @override
@@ -193,12 +209,13 @@ class _$_Product implements _Product {
                 other.category == category) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.inCart, inCart) || other.inCart == inCart));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, title, price, category, description, image);
+  int get hashCode => Object.hash(
+      runtimeType, id, title, price, category, description, image, inCart);
 
   @JsonKey(ignore: true)
   @override
@@ -214,7 +231,8 @@ abstract class _Product implements Product {
       required final String price,
       final String? category,
       final String? description,
-      final String? image}) = _$_Product;
+      final String? image,
+      required final int inCart}) = _$_Product;
 
   @override
   int get id;
@@ -228,6 +246,8 @@ abstract class _Product implements Product {
   String? get description;
   @override
   String? get image;
+  @override
+  int get inCart;
   @override
   @JsonKey(ignore: true)
   _$$_ProductCopyWith<_$_Product> get copyWith =>

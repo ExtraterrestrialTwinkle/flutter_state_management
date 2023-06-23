@@ -8,7 +8,7 @@ import 'module_business.config.dart';
     preferRelativeImports: true,
     asExtension: false
 )
-void initializeBlocs(){
+void initializeStateManager(){
   initializeServices();
   $initGetIt(GetIt.I);
 }

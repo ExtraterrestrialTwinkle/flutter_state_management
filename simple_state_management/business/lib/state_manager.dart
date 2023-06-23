@@ -1,3 +1,4 @@
+import 'package:business/utils.dart';
 import 'package:data/data.dart';
 import 'package:business/product.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +8,7 @@ import 'package:injectable/injectable.dart';
 class StateManager with ChangeNotifier {
   final NetworkService _service;
   List<Product> products = List.empty();
+  bool get isLoaded => products.isNotEmpty;
 
   StateManager(this._service) {
     initProducts();
@@ -16,6 +18,13 @@ class StateManager with ChangeNotifier {
     products = (await _service.fetchAllProducts())
         .map((productItem) => productItem.toProduct())
         .toList();
+    notifyListeners();
+  }
+
+  void addToCart(int productId) async {
+    Product product = products.firstWhere((element) => element.id == productId);
+    Product newProduct = product.copyWith(inCart: product.inCart + 1);
+    await products.changeElement(newProduct);
     notifyListeners();
   }
 }

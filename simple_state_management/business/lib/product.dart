@@ -11,6 +11,7 @@ class Product with _$Product {
     String? category,
     String? description,
     String? image,
+    required int inCart,
   }) = _Product;
 }
 
@@ -22,7 +23,8 @@ extension Mapper on ProductModel {
       price: price,
       category: category,
       description: description,
-      image: image
+      image: image,
+      inCart: 0,
     );
   }
 }
