@@ -7,7 +7,7 @@ class Product with _$Product {
   const factory Product({
     required int id,
     required String title,
-    required String price,
+    required double price,
     String? category,
     String? description,
     String? image,

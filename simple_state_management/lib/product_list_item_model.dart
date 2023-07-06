@@ -3,7 +3,7 @@ import 'package:business/product.dart';
 class ProductListItemModel {
   final int id;
   final String title;
-  final String price;
+  final double price;
   final String? image;
   final int count;
 
@@ -17,6 +17,7 @@ extension Mapper on Product {
       title: title,
       price: price,
       count: inCart,
+      image: image
     );
   }
 }

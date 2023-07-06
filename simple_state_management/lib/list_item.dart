@@ -9,30 +9,42 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Column(children: [
-          item.image == null
-              ? const Icon(Icons.image)
-              : Image.network(item.image!),
-          Text(
-            item.title,
-            textAlign: TextAlign.start,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            item.price,
-            textAlign: TextAlign.end,
-            style: const TextStyle(fontSize: 12.0, color: Colors.black12),
-          )
-        ]),
-        IconButton(
-            onPressed: onTap,
-            icon: const Icon(Icons.add_shopping_cart, color: Colors.white),
-            color: Colors.lightBlue)
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        child: Row(
+          children: [
+            item.image == null
+                ? const Icon(Icons.image)
+                : Image.network(item.image!, height: 150.0, width: 150,),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                  Text(
+                    item.title,
+                    textAlign: TextAlign.start,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    '${item.price}\$',
+                    textAlign: TextAlign.end,
+                    style: const TextStyle(fontSize: 16.0, color: Colors.black),
+                  )
+                ]),
+              ),
+            ),
+            IconButton(
+                onPressed: onTap,
+                icon: const Icon(Icons.add_shopping_cart, color: Colors.black),
+                color: Colors.lightBlue)
+          ],
+        ),
+      ),
     );
   }
 }

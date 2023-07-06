@@ -16,8 +16,8 @@ class NetworkServiceImpl implements NetworkService {
     try {
       final response = await http.get(allProductsUrl);
       logger.i("HTTP response ${response.body}");
-      var data = json.decode(response.body);
-      return data.map<ProductModel>((product) => ProductModel.fromJson(product));
+      List<dynamic> data = json.decode(response.body);
+      return data.map((product) => ProductModel.fromJson(product)).toList();
     } on Exception catch (ex, stack) {
       logger.e("Exception on NetworkService.fetchAllProducts $ex");
       logger.e(stack);

@@ -42,7 +42,6 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -52,10 +51,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme
-            .of(context)
-            .colorScheme
-            .inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
       ),
       body: Consumer<StateManager>(
@@ -63,8 +59,14 @@ class MyHomePage extends StatelessWidget {
           if (!state.isLoaded) {
             return const CircularProgressIndicator();
           } else {
-            return ListPage(products: state.products.map((product) =>
-                product.toProductListItemModel()).toList());
+            return ListPage(
+              products: state.products
+                  .map((product) => product.toProductListItemModel())
+                  .toList(),
+              addedToCart: (ProductListItemModel item) {
+                state.addToCart(item.id);
+              },
+            );
           }
         },
       ),
