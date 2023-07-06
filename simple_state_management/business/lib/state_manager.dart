@@ -8,6 +8,7 @@ import 'package:injectable/injectable.dart';
 class StateManager with ChangeNotifier {
   final NetworkService _service;
   List<Product> products = List.empty();
+
   bool get isLoaded => products.isNotEmpty;
 
   StateManager(this._service) {
@@ -21,9 +22,24 @@ class StateManager with ChangeNotifier {
     notifyListeners();
   }
 
-  void addToCart(int productId) async {
+  void addOneToCart(int productId) async {
     Product product = products.firstWhere((element) => element.id == productId);
     Product newProduct = product.copyWith(inCart: product.inCart + 1);
+    await products.changeElement(newProduct);
+    notifyListeners();
+  }
+
+  void removeOneFromCart(int productId) async {
+    Product product = products.firstWhere((element) => element.id == productId);
+    Product newProduct =
+        product.copyWith(inCart: product.inCart > 0 ? product.inCart - 1 : 0);
+    await products.changeElement(newProduct);
+    notifyListeners();
+  }
+
+  void removeAllFromCart(int productId) async {
+    Product product = products.firstWhere((element) => element.id == productId);
+    Product newProduct = product.copyWith(inCart: 0);
     await products.changeElement(newProduct);
     notifyListeners();
   }

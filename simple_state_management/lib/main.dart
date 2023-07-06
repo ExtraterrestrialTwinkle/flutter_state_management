@@ -3,8 +3,8 @@ import 'package:business/state_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_state_management/list_page.dart';
-import 'package:simple_state_management/product_list_item_model.dart';
+import 'package:simple_state_management/pages/my_home_page.dart';
+import 'package:simple_state_management/pages/shopping_cart_page.dart';
 
 void main() {
   initializeStateManager();
@@ -32,44 +32,30 @@ class _MyAppState extends State<MyApp> {
     return ChangeNotifierProvider<StateManager>(
         create: (_) => _stateManager,
         child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
-          home: const MyHomePage(title: 'Simple state management Home Page'),
-        ));
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(title),
-      ),
-      body: Consumer<StateManager>(
-        builder: (context, state, child) {
-          if (!state.isLoaded) {
-            return const CircularProgressIndicator();
-          } else {
-            return ListPage(
-              products: state.products
-                  .map((product) => product.toProductListItemModel())
-                  .toList(),
-              addedToCart: (ProductListItemModel item) {
-                state.addToCart(item.id);
-              },
-            );
-          }
-        },
-      ),
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              useMaterial3: true,
+            ),
+            initialRoute: MyHomePage.routeName,
+            onGenerateRoute: (RouteSettings settings) {
+              switch (settings.name) {
+                case MyHomePage.routeName:
+                  return MaterialPageRoute(builder: (BuildContext context) {
+                    return const MyHomePage(
+                        title: 'Simple state management Home Page');
+                  });
+                case ShoppingCartPage.routeName:
+                  return MaterialPageRoute(builder: (BuildContext context) {
+                    return const ShoppingCartPage(title: 'Shopping Cart');
+                  });
+                default: return MaterialPageRoute(builder: (BuildContext context) {
+                  return const MyHomePage(
+                      title: 'Simple state management Home Page');
+                });
+              }
+            },
+        ),
     );
   }
 }
