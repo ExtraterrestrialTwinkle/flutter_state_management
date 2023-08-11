@@ -1,0 +1,1 @@
+const ITEM_WIDGET_HEIGHT = 140.0;

@@ -1,4 +1,4 @@
-import 'package:business/state_manager.dart';
+import 'package:business/products_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_state_management/ui_model/product_list_item_model.dart';
@@ -19,7 +19,7 @@ class ShoppingCartPage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
       ),
-      body: Consumer<StateNotifier>(
+      body: Consumer<ProductsNotifier>(
         builder: (context, state, child) {
           if (!state.isLoaded) {
             return const CircularProgressIndicator();

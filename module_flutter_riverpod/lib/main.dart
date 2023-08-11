@@ -1,5 +1,5 @@
 import 'package:business/module_business.dart';
-import 'package:business/state_manager.dart';
+import 'package:business/products_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
@@ -19,17 +19,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late final StateNotifier _stateManager;
+  late final ProductsNotifier _stateManager;
 
   @override
   void initState() {
     super.initState();
-    _stateManager = GetIt.I.get<StateNotifier>();
+    _stateManager = GetIt.I.get<ProductsNotifier>();
   }
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<StateNotifier>(
+    return ChangeNotifierProvider<ProductsNotifier>(
         create: (_) => _stateManager,
         child: MaterialApp(
             title: 'Flutter Demo',
